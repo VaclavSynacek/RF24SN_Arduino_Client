@@ -1,8 +1,9 @@
 /*
   RF24SN.h - Alternative network library on top of RF24 library and nRF24l01 radio modules
-  Created by Vaclav Synacek, February 2013.
-  Released under GNU LGPL
+  Created by Vaclav Synacek, 2014.
+  Released under MIT license
 */
+
 #ifndef RF24SN_h
 #define RF24SN_h
 
