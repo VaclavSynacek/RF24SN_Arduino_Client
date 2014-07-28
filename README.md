@@ -56,3 +56,23 @@ if(requestSuccess)
 {
    Serial.println(requestValue); //replace this line with some action code (moving servo, LED on, etc.)
 }
+
+
+### Wiring
+
+![Wiring](https://raw.githubusercontent.com/VaclavSynacek/RF24SN_Arduino_Client/master/RF24SN-Arduino_bb.png "Wiring")
+
+The SPI wires (yellow) have to go exactly to their counterparts:
+* MOSI to MOSI
+* MISO to MISO
+* SCK to SC(L)K
+
+The VCC (red) has to go to any **3.3V** pin. Connecting it to 5V pin will damage the nRF24L01.
+
+GRN (black) can go to any ground.
+
+The CSN and CE can go to any pin, however it must correspond to the library constructor. All examples are written assuming:
+* CE to pin 9
+* CS(N) to pin 10
+
+![Schema](https://raw.githubusercontent.com/VaclavSynacek/RF24SN_Arduino_Client/master/RF24SN-Arduino_schem.png "Schema")
