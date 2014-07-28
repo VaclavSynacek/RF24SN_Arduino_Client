@@ -56,7 +56,7 @@ if(requestSuccess)
 {
    Serial.println(requestValue); //replace this line with some action code (moving servo, LED on, etc.)
 }
-
+```
 
 ### Wiring
 
