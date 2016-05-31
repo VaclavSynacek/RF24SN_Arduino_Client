@@ -126,7 +126,7 @@ RF24SNPacket RF24SN::sendPacket(RF24SNPacket packet)
     
     //temporarily overwrite the pipe 0 with address 0
     //this is not intuitive, but otherwise this node would also listen to all packets sent to base
-    _radio->openWritingPipe(0);
+    _radio->openWritingPipe((uint64_t)0);
      
     //start listening for the ack packet from base
     //on pipe 0, there is 0. on pipe 1, there is unique address of this node
