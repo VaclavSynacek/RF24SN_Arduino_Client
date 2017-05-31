@@ -69,7 +69,21 @@ bool RF24SN::request(uint8_t sensorId, float* value)
 
 bool RF24SN::request(uint8_t sensorId, float* value, int retries)
 {
-  RF24SNPacket requestPacket = createPacket(REQUEST_PACKET, sensorId, 0);
+	return requestValue(broadcastId, value, retries, REQUEST_PACKET);
+}
+
+bool RF24SN::requestBroadcast(uint8_t broadcastId, float* value)
+{
+  return requestValue(broadcastId, value, 1, BROADCAST_PACKET);
+}
+
+bool RF24SN::requestBroadcast(uint8_t broadcastId, float* value, int retries)
+{
+  return requestValue(broadcastId, value, retries, BROADCAST_PACKET);
+}
+
+bool requestValue(uint8_t broadcastId, float* value, int retries, int packetType){
+  RF24SNPacket requestPacket = createPacket(packetType, broadcastId, 0);
   RF24SNPacket responsePacket = sendPacket(requestPacket, retries);
   if (responsePacket.packetType == RESPONSE_PACKET && responsePacket.sensorId == requestPacket.sensorId )
   {
@@ -117,8 +131,8 @@ RF24SNPacket RF24SN::createPacket()
 RF24SNPacket RF24SN::sendPacket(RF24SNPacket packet)
 {
  
-		//this will be returned at the end. if no ack packet comes back, then "no packet" packet will be returned    
-		RF24SNPacket returnPacket = createPacket();
+    //this will be returned at the end. if no ack packet comes back, then "no packet" packet will be returned    
+    RF24SNPacket returnPacket = createPacket();
     
 
     //send the actual packet
@@ -213,5 +227,3 @@ void RF24SN::printPacketDetails(RF24SNPacket packet)
     Serial.print("\tvalue ");
     Serial.println(packet.value);
 }
-
-  
