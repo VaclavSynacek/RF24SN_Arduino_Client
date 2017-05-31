@@ -28,6 +28,9 @@ class RF24SN
     bool publish(uint8_t sensorId, float value, int retries);
     bool request(uint8_t sensorId, float* value);
     bool request(uint8_t sensorId, float* value, int retries);
+    bool requestBroadcast(uint8_t broadcastId, float* value);
+    bool requestBroadcast(uint8_t broadcastId, float* value, int retries);
+
     void printDetails();
 
     static const uint8_t NO_PACKET = 0;
@@ -46,6 +49,7 @@ class RF24SN
     RF24SNPacket createPacket();
     RF24SNPacket sendPacket(RF24SNPacket packet, int retries);
     RF24SNPacket sendPacket(RF24SNPacket packet);
+    bool requestValue(uint8_t broadcastId, float* value, int retries, int packetType);
     
 };
 
